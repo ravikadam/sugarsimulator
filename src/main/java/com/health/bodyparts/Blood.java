@@ -4,7 +4,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.apache.commons.math3.distribution.PoissonDistribution;
+
+
 import com.health.bodyparts.HumanBody.BodyOrgan;
+import com.health.simulate.SimulateApplication;
 
 public class Blood implements IBodyPart, IBlood {
 
@@ -105,6 +109,11 @@ public class Blood implements IBodyPart, IBlood {
         avgBGLOneDayCount = 0;
 
         totalGlycolysisSoFar = 0;
+    }
+
+    public static int glycolysisMin__(double mean) {
+        PoissonDistribution poisson = new PoissonDistribution(mean);
+        return poisson.sample();
     }
 
     @Override
@@ -296,13 +305,23 @@ public class Blood implements IBodyPart, IBlood {
     public void processTick() {
     
         double x; // to hold the random samples
-    
-        final std::poisson_distribution<int> glycolysisMin__ (1000.0*glycolysisMin_);
+
+
+// Java function name glycolysisMin__ which will return possion distribtuiion
+
+
+
+
+
+
+
+
+
         
         //RBCs consume about 25mg of glucose every minute and convert it to lactate via glycolysis.
         //Gerich: Glycolysis. Depends on insulin level. Some of the consumed glucose becomes lactate.
         
-        x = (double)(glycolysisMin__(sim->generator))/1000.0;
+        x = (double)(glycolysisMin__(1000.0*glycolysisMin_,sim.generator))/1000.0;
         double toGlycolysis = body.glycolysis(x,glycolysisMax_);
     
         if( toGlycolysis > glucose)

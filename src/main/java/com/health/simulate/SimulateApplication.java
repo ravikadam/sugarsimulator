@@ -1,4 +1,4 @@
-package com.health.cgm;
+package com.health.simulate;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
